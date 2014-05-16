@@ -11,6 +11,7 @@ namespace VoteappAPI.Models
         public String Text { get; set; }
         public List<Voter> Voters {get;set;}
         public DateTime Timestamp { get; set; }
+
         public int GetVotes()
         {
             return Voters.Count;

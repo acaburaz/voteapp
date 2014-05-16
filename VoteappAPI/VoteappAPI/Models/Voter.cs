@@ -12,6 +12,6 @@ namespace VoteappAPI.Models
         public int VoterId { get; set; }
         public String IpAdress { get; set; }
         public String PhoneName { get; set; }
-        public DateTime Timestamp { get; set { Timestamp=DateTime.Today; } }
+        public DateTime Timestamp { get; set; }
     }
 }
