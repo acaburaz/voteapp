@@ -12,10 +12,11 @@ namespace VoteappAPI.Models
         public int Votes { get; set; }
         public String VoteType { get; set; }
         public List<Choice> Choices { get; set; }
-
+     
         public Vote()
         {
-
         }
+
+      
     }
 }
