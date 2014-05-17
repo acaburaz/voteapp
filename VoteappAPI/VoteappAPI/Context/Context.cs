@@ -14,5 +14,7 @@ namespace VoteappAPI.Context
 
         public System.Data.Entity.DbSet<VoteappAPI.Models.Choice> Choices { get; set; }
 
+        public System.Data.Entity.DbSet<VoteappAPI.Models.Voter> Voters { get; set; }
+
     }
 }
