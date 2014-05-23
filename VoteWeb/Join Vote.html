@@ -2,8 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-</head>
-<body>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">    
+        GetChoices();
+        function GetChoices() {
 
+            $.getJSON("http://localhost:50753/Api/Choice", function (data) {
+                for (var i = 0; i < data.length; i++){
+                $(".content").append(data[0].ChoiceId);
+                $(".content").append("</br>" + data[0].Timestamp);
+                $(".content").append("</br>"+data[0].Text);// use data as a generic object 
+                }
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <div class="content">
+
+    </div>
 </body>
 </html>
