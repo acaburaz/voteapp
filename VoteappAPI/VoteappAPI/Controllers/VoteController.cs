@@ -10,17 +10,22 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using VoteappAPI.Models;
 using VoteappAPI.Context;
+using System.Web.Http.Results;
+using System.Web.Mvc;
 
 namespace VoteappAPI.Controllers
 {
+    [AllowCrossSiteJson]
     public class VoteController : ApiController
     {
         private VoteContext db = new VoteContext();
 
         // GET api/Vote
-        public IQueryable<Vote> GetVotes()
+        public List<Vote> GetVotes()
         {
-            return db.Votes;
+            var list = db.Votes.ToList();
+
+            return list;
         }
 
         // GET api/Vote/5
