@@ -79,11 +79,24 @@ namespace VoteappAPI.Controllers
         [ResponseType(typeof(Vote))]
         public IHttpActionResult PostVote(Vote vote)
         {
-            if (!ModelState.IsValid)
+            
+            if (!ModelState.IsValid & vote == null)
             {
                 return BadRequest(ModelState);
             }
+            if (vote.Choices != null)
 
+            {
+                if (vote.Choices.ToList().Count > 0)
+                {
+                    foreach(var c in vote.Choices)
+                    {
+                        c.Timestamp = DateTime.Today;
+                    } 
+                      
+                }
+                 
+            }
             db.Votes.Add(vote);
             db.SaveChanges();
 

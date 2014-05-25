@@ -5,6 +5,63 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <title></title>
+        <script type="text/javascript">
+
+            //GetChoices();
+
+            function Submit() {
+
+
+                Date.prototype.yyyymmdd = function() {
+                    var yyyy = this.getFullYear().toString();
+                    var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+                    var dd = this.getDate().toString();
+                    return yyyy + "/" + (mm[1] ? mm : "0" + mm[0]) + "/" + (dd[1] ? dd : "0" + dd[0]); // padding
+                };
+
+                d = new Date();
+                //public int ChoiceId { get; set; }
+                //public String Text { get; set; }
+                //public virtual ICollection<Voter> Voters {get;set;}
+                //public DateTime Timestamp { get; set; }
+                var choices = [
+                    {
+                        Text: $("#choice1").val(),
+                    },
+                    {
+                        Text: $("#choice2").val(),
+                    }
+                ];
+
+
+                var vote = {
+                    Name: $("#validate-text").val(),
+                    Choices: choices,
+
+                };
+
+                //public int Id { get; set; }
+                //public string Name { get; set; }
+                //public int Votes { get; set; }
+                //public String VoteType { get; set; }
+                //public virtual ICollection <Choice> Choices { get; set; }
+
+                $.ajax({
+                    url: 'http://localhost:50753/Api/vote',
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(data) {
+                        alert("lyckat!");
+                        // Your application has indicated there's an error
+                        window.setTimeout(function () {
+                            window.location.href = "join vote.html";
+                        }, 5000);
+                    },
+                    data: vote
+                });
+            }
+        </script>
+
     </head>
 <body>
     <div class="panel panel-primary">
@@ -25,13 +82,17 @@
                         <div class="form-group">
                             <label for="validate-optional">Choices</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="validate-optional" id="validate-optional" placeholder="Choice1">
+                                <input type="text" class="form-control" name="choice1" id="choice1" placeholder="Choice1">
+                                <span class="input-group-addon info"><span class="glyphicons-icon circle_plus"></span></span>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="choice2" id="choice2" placeholder="Choice2">
                                 <span class="input-group-addon info"><span class="glyphicons-icon circle_plus"></span></span>
                             </div>
                         </div>
                         
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="button" class="btn btn-primary" onclick="Submit()">Create</button>
                             <button type="button" class="btn">Cancel</button>
                         </div>
        

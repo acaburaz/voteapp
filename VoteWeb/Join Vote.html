@@ -10,7 +10,7 @@
         GetChoices();
         function GetChoices() {
 
-            $.getJSON("http://localhost:50753/Api/vote", function (data) {
+            $.getJSON("http://voteappnet.azurewebsites.net/Api/vote", function (data) {
                
               
                 for (var i = 0; i < data.length; i++) {

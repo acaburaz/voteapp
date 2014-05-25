@@ -13,6 +13,7 @@ using VoteappAPI.Context;
 
 namespace VoteappAPI.Controllers
 {
+      [AllowCrossSiteJson]
     public class VoterController : ApiController
     {
         private VoteContext db = new VoteContext();

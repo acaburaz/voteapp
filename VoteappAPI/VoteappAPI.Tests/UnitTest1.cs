@@ -14,7 +14,7 @@ namespace VoteappAPI.Tests
         public void Vote()
         {
             var vote = new Vote();
-            vote.Name = "Vem har bästa Bilen?";
+            vote.Name = "Vem har bästa Luren?";
             vote.Choices = new List<Choice>();
            
             var context = new VoteContext();

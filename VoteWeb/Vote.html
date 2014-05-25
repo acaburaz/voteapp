@@ -23,7 +23,7 @@
         }
 
         function GetVote() {
-            $.getJSON("http://localhost:50753/Api/vote/"+gup("id"), function (data) {           
+            $.getJSON("http://voteappnet.azurewebsites.net/Api/vote/" + gup("id"), function (data) {
                     $(".tcontent").append("<tr>");
                     $(".tcontent").append("<td>" + data.Id + "</td>");
                     $("#namn").append( data.Name );
