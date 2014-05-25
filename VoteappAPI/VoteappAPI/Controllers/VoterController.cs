@@ -71,15 +71,29 @@ namespace VoteappAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST api/Voter
-        [ResponseType(typeof(Voter))]
-        public IHttpActionResult PostVoter(Voter voter)
+        //VoterChoiceView
+        [ResponseType(typeof(VoterChoiceView))]
+        public IHttpActionResult PostVoter(VoterChoiceView device)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && device == null)
             {
                 return BadRequest(ModelState);
             }
 
+            db.Voters.Add(device.Voter);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = device.Voter.VoterId }, device.Voter);
+        }
+        // POST api/Voter
+        [ResponseType(typeof(Voter))]
+        public IHttpActionResult PostVoter(Voter voter)
+        {
+            if (!ModelState.IsValid && voter == null)
+            {
+                return BadRequest(ModelState);
+            }
+            voter.Timestamp = DateTime.Today;
             db.Voters.Add(voter);
             db.SaveChanges();
 
@@ -87,7 +101,7 @@ namespace VoteappAPI.Controllers
         }
 
         [ResponseType(typeof(Voter))]
-        public IHttpActionResult PostVoterToChoice(int choiceId, Voter voter)
+        public IHttpActionResult PostVoter( Voter voter,int choiceId)
         {
             if (!ModelState.IsValid)
             {
@@ -97,6 +111,7 @@ namespace VoteappAPI.Controllers
             {
                 var choice = db.Choices.Find(choiceId);
                 db.Entry(choice).State=EntityState.Modified;
+                voter.Timestamp = DateTime.Today;
                 choice.Voters.Add(voter);
 
             }

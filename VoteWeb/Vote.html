@@ -22,6 +22,32 @@
                 return results[1];
         }
 
+        //public int VoterId { get; set; }s
+        //public String IpAdress { get; set; }
+        //public String PhoneName { get; set; }
+        //public DateTime Timestamp { get; set; }
+        voter = { IpAdress: "127.0.0.1", PhoneName: "Android" };
+       
+
+        function putVote(id) {
+           var device = { Id: id, Voter: voter };
+
+            $.ajax({
+                url: 'http://voteappnet.azurewebsites.net/Api/voter?choiceId=' + id,
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                 
+                    // Your application has indicated there's an error
+                    window.setTimeout(function () {
+                        location.reload();
+                    }, 500);
+                },
+               
+                data: voter
+            });
+        }
+
         function GetVote() {
             $.getJSON("http://voteappnet.azurewebsites.net/Api/vote/" + gup("id"), function (data) {
                     $(".tcontent").append("<tr>");
@@ -31,11 +57,14 @@
                // if(data.)
 
                     for (var j = 0; j < data.Choices.length; j++) {
-                        $("#buttons").append("<a class=\"btn btn-lg btn-success\" style=\"width: 50%\" role=\"button\" a href>" + data.Choices[j].Text + " " + "<span class=\"badge\">" + data.Choices[j].Voters.length + "</span>" + "</a>");
+                        $("#buttons").append("<a class=\"btn btn-lg btn-success\" style=\"width: 50%\" role=\"button\"  onclick=\"+putVote("+data.Choices[j].ChoiceId+");\">"  +data.Choices[j].Text+ "<span class=\"badge\">" + data.Choices[j].Voters.length + "</span>" + "</a>");
                     }
                     $(".tcontent").append("</tr>");
             });
-        };
+        }
+
+     
+        
     </script>
 
 </head>
