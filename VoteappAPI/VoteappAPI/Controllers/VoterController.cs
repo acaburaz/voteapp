@@ -103,12 +103,15 @@ namespace VoteappAPI.Controllers
         [ResponseType(typeof(Voter))]
         public IHttpActionResult PostVoter( Voter voter,int choiceId)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && voter == null)
             {
                 return BadRequest(ModelState);
             }
             try
             {
+               var ipAdress = ((System.Web.HttpContextWrapper) this.Request.Properties["MS_HttpContext"]).Request.UserHostAddress;
+                voter.IpAdress = ipAdress;
+
                 var choice = db.Choices.Find(choiceId);
                 db.Entry(choice).State=EntityState.Modified;
                 voter.Timestamp = DateTime.Today;

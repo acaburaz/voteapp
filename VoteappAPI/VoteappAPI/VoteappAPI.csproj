@@ -162,6 +162,7 @@
     <Compile Include="Models\ChoiceType.cs" />
     <Compile Include="Models\Vote.cs" />
     <Compile Include="Models\Voter.cs" />
+    <Compile Include="Models\VoterChoiceView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ChoiceController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
