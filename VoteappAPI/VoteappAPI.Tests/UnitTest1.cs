@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VoteappAPI.Models;
 using VoteappAPI.Context;
 using System.Collections.Generic;
+using VoteappAPI.Controllers;
 
 namespace VoteappAPI.Tests
 {
@@ -33,6 +34,19 @@ namespace VoteappAPI.Tests
             context.Choices.Add(choice);
             context.SaveChanges();
 
+        }
+
+        [TestMethod]
+        public void TestAddVoterChoice()
+        {
+            var v = new VoterController();
+            var voter = new Voter();
+            voter.IpAdress = "123,13,31";
+            voter.PhoneName = "android";
+            voter.Timestamp = DateTime.Today;
+
+           var message = v.PostVoterToChoice(1, voter);
+            Console.WriteLine(message);
         }
     }
 }

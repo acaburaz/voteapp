@@ -85,6 +85,31 @@ namespace VoteappAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = voter.VoterId }, voter);
         }
 
+        [ResponseType(typeof(Voter))]
+        public IHttpActionResult PostVoterToChoice(int choiceId, Voter voter)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var choice = db.Choices.Find(choiceId);
+                db.Entry(choice).State=EntityState.Modified;
+                choice.Voters.Add(voter);
+
+            }
+            catch
+            {
+                return null;
+            }
+
+
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = voter.VoterId }, voter);
+        }
+
         // DELETE api/Voter/5
         [ResponseType(typeof(Voter))]
         public IHttpActionResult DeleteVoter(int id)

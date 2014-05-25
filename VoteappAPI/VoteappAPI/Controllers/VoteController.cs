@@ -92,7 +92,7 @@ namespace VoteappAPI.Controllers
 
         // DELETE api/Vote/5
         [ResponseType(typeof(Vote))]
-        public IHttpActionResult DeleteVote(int id)
+        public IHttpActionResult DeleteVote(int id,string password)
         {
             Vote vote = db.Votes.Find(id);
             if (vote == null)

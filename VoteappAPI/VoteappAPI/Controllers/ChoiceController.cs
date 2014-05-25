@@ -18,6 +18,7 @@ namespace VoteappAPI.Controllers
     {
         private VoteContext db = new VoteContext();
 
+   
         // GET api/Choice
         public IQueryable<Choice> GetChoices()
         {
