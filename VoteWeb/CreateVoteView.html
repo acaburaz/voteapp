@@ -60,8 +60,27 @@
                     data: vote
                 });
             }
-        </script>
+            //Add TextInput
+            function addTxtBx() {
+                var txtBxHolder = document.getElementById('txtBoxHolder');
+                var newTxtBx = document.createElement('input');
+                newTxtBx.type = 'text';
+                txtBxHolder.appendChild(newTxtBx);
+            }
+            //Remove TextBox
+            function removeTxtBx() {
+                var allTxtBxs = document.getElementById('txtBoxHolder').getElementsByTagName('input');
+                if (allTxtBxs.length == 0) {
+                    alert('there are no text boxes to remove');
+                }
+                else {
+                    document.getElementById('txtBoxHolder').removeChild(allTxtBxs[allTxtBxs.length - 1]);
+                }
 
+            }
+        </script>
+        
+        
     </head>
 <body>
     <div class="panel panel-primary">
@@ -76,29 +95,31 @@
                             <label for="validate-text">Subject/Question</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" name="validate-text" id="validate-text" placeholder="Subject/Question" required>
-                                <span class="input-group-addon danger"><span class=""></span></span>
+                                <span class="input-group-addon danger"><span class="glyphicon glyphicon-edit"></span></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="validate-optional">Choices</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="choice1" id="choice1" placeholder="Choice1">
-                                <span class="input-group-addon info"><span class="glyphicons-icon circle_plus"></span></span>
+                            <div class="´col-sm-10">
+                                <input type="text" class="form-control" name="choice1" id="choice1" placeholder="Choice1">                              
+                                <div id="txtBoxHolder"></div>
+                                <input type="button" value="Add Text Box" onclick="addTxtBx()">
+                                <input type="button" value="Remove Text Box" onclick="removeTxtBx()">
+                                                      
                             </div>
                             </br>
                             <div class="input-group">
                                 <input type="text" class="form-control" name="choice2" id="choice2" placeholder="Choice2">
-                                <span class="input-group-addon info"><span class="glyphicons-icon circle_plus"></span></span>
-
-                            </div>
-                        </div>
-                        
+                                <span class="input-group-addon info"><span class="glyphicon glyphicon-plus-sign"></span></span>
+                            </div>                            
+                        </div>                        
                         <div class="form-actions">
                             <button type="button" class="btn btn-primary" onclick="Submit()">Create</button>
                             <button type="button" class="btn" value=" &lt;-- BACK " onclick="history.go(-1);return false;">Cancel</button>
-                        </div>
-       
-                    </form>
+                        </div>      
+                    </form>  
+                                            
+                    </div>
                 </div>
             </div>
     </div>
