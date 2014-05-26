@@ -45,7 +45,7 @@ namespace VoteappAPI.Tests
             voter.PhoneName = "android";
             voter.Timestamp = DateTime.Today;
 
-           var message = v.PostVoterToChoice(1, voter);
+           var message = v.PostVoter( voter,1);
             Console.WriteLine(message);
         }
     }

@@ -5,6 +5,8 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
         <script type="text/javascript">
 
             //GetChoices();
@@ -47,15 +49,14 @@
                 //public virtual ICollection <Choice> Choices { get; set; }
 
                 $.ajax({
-                    url: 'http://localhost:50753/Api/vote',
+                    url: 'http://voteappnet.azurewebsites.net/Api/vote',
                     type: 'post',
                     dataType: 'json',
                     success: function(data) {
                         alert("lyckat!");
-                        // Your application has indicated there's an error
                         window.setTimeout(function () {
                             window.location.href = "join vote.html";
-                        }, 5000);
+                        }, 500);
                     },
                     data: vote
                 });

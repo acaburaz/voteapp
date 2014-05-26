@@ -13,6 +13,7 @@ using VoteappAPI.Context;
 
 namespace VoteappAPI.Controllers
 {
+
       [AllowCrossSiteJson]
     public class VoterController : ApiController
     {
@@ -89,6 +90,13 @@ namespace VoteappAPI.Controllers
         [ResponseType(typeof(Voter))]
         public IHttpActionResult PostVoter(Voter voter)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
             if (!ModelState.IsValid && voter == null)
             {
                 return BadRequest(ModelState);
