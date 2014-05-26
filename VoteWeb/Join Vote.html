@@ -2,8 +2,92 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <script type="text/javascript">    
+        GetChoices();
+        function GetChoices() {
+
+            $.getJSON("http://voteappnet.azurewebsites.net/Api/vote", function (data) {
+               
+              
+                for (var i = 0; i < data.length; i++) {
+                    $(".tcontent").append("<tr>")
+                    $(".tcontent").append("<td>" + data[i].Id + "</td>")
+
+                    $(".tcontent").append("<td>" + "<a href=" + "Vote.html?id=" + data[i].Id + ">" + data[i].Name + "</a>" + "</td>");
+                    
+                                     
+                    for (var j = 0; j < data[i].Choices.length; j++) {
+                        $(".tcontent").append("<td>" + data[i].Choices[j].Text + "</td>");
+
+
+                    }
+                    $(".tcontent").append("</tr>");
+                }
+                
+            });
+        };
+    </script>
 </head>
+
 <body>
+    <div class="panel panel-primary">
+        <div class="panel-heading"><center>VoteApp v.1.0</center></div>
+    </div>
+    <div class="jumbotron">
+        <center><p class="lead">Select a Voteroom</p></center>
+        <div class="col-sm-offset-4 col-sm-7">
+        <form class="form-search">
+            <div class="input-append">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-large">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">Search!</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div>
+        </form>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-4 col-sm-4">
+                <form method="post">
+                                  <div class="form-group">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Vote</th>
+                                    <th>Choice 1</th>
+                                    <th>Choice 2</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tcontent"></tbody>
+                        </table>
+                    </div>
+                    <div class="form-actions"><!-- /Back -->
+                        <button type="button" class="btn" value=" &lt;-- BACK " onclick="history.go(-1);return false;">Back</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <center>
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+        </center>
 
 </body>
 </html>

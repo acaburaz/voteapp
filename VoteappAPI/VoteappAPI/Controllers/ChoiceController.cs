@@ -13,10 +13,12 @@ using VoteappAPI.Context;
 
 namespace VoteappAPI.Controllers
 {
+    [AllowCrossSiteJson]
     public class ChoiceController : ApiController
     {
         private VoteContext db = new VoteContext();
 
+   
         // GET api/Choice
         public IQueryable<Choice> GetChoices()
         {

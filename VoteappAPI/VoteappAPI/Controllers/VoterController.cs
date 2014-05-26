@@ -13,6 +13,10 @@ using VoteappAPI.Context;
 
 namespace VoteappAPI.Controllers
 {
+<<<<<<< HEAD
+=======
+      [AllowCrossSiteJson]
+>>>>>>> e8c208570015f68785a50e040a3c1677b249248f
     public class VoterController : ApiController
     {
         private VoteContext db = new VoteContext();
@@ -70,21 +74,78 @@ namespace VoteappAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+<<<<<<< HEAD
+=======
+        //VoterChoiceView
+        [ResponseType(typeof(VoterChoiceView))]
+        public IHttpActionResult PostVoter(VoterChoiceView device)
+        {
+            if (!ModelState.IsValid && device == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Voters.Add(device.Voter);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = device.Voter.VoterId }, device.Voter);
+        }
+>>>>>>> e8c208570015f68785a50e040a3c1677b249248f
         // POST api/Voter
         [ResponseType(typeof(Voter))]
         public IHttpActionResult PostVoter(Voter voter)
         {
+<<<<<<< HEAD
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+=======
+            if (!ModelState.IsValid && voter == null)
+            {
+                return BadRequest(ModelState);
+            }
+            voter.Timestamp = DateTime.Today;
+>>>>>>> e8c208570015f68785a50e040a3c1677b249248f
             db.Voters.Add(voter);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = voter.VoterId }, voter);
         }
 
+<<<<<<< HEAD
+=======
+        [ResponseType(typeof(Voter))]
+        public IHttpActionResult PostVoter( Voter voter,int choiceId)
+        {
+            if (!ModelState.IsValid && voter == null)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+               var ipAdress = ((System.Web.HttpContextWrapper) this.Request.Properties["MS_HttpContext"]).Request.UserHostAddress;
+                voter.IpAdress = ipAdress;
+
+                var choice = db.Choices.Find(choiceId);
+                db.Entry(choice).State=EntityState.Modified;
+                voter.Timestamp = DateTime.Today;
+                choice.Voters.Add(voter);
+
+            }
+            catch
+            {
+                return null;
+            }
+
+
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = voter.VoterId }, voter);
+        }
+
+>>>>>>> e8c208570015f68785a50e040a3c1677b249248f
         // DELETE api/Voter/5
         [ResponseType(typeof(Voter))]
         public IHttpActionResult DeleteVoter(int id)
