@@ -67,8 +67,8 @@
                 var i = $('#addinput p').size() + 1;
 
                 $('#addNew').live('click', function(){
-                    $('<p><input type="text" class="form-control" id="choice" name="choice_' + i +'" placeholder="Answer" />'+
-                        '<a href="#" id="remNew">Remove</a></p>').appendTo(addDiv);
+                    $('<p class="input-group"><input type="text" class="form-control" id="choice" name="choice_' + i + '" placeholder="Answer" >' +
+                      '<span class="input-group-btn"><button" class="btn btn-danger " id="remNew"><span class="glyphicon glyphicon-minus"></span></button></span></p>').appendTo(addDiv);
                     i++;
 
                     return false;
@@ -106,14 +106,15 @@
                         <div class="form-group">
                             <label for="validate-optional">Choices</label>
                             <div id="addinput">  
-                             <div class="´col-sm-10">
-                                    <p>
-                                    <input type="text" class="form-control" id="choice" name="choice" placeholder="Answer" /><a href="#" id="addNew">Add</a>                                    
+                
+                                    <p class="input-group">
+                                        <input type="text" class="form-control" id="choice" name="choice" placeholder="Answer">
+                                        <span class="input-group-btn"><button" class="btn btn-success " id="addNew"><span class="glyphicon glyphicon-pencil"></span></button></span>
                                     </p>    
-                                </>
+                         
                                 
                             </div>
-                                </div> 
+                           
                             </div>                                           
                         <div class="form-actions">
                             <button type="button" class="btn btn-primary" onclick="Submit()">Create</button>
