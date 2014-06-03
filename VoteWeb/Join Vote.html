@@ -2,63 +2,78 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <script src="jquery-1.11.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="myPagination.js"></script>
 
-
-    <script type="text/javascript">    
+    <script type="text/javascript">
+        var getc;
+        
         GetChoices();
         
         function GetChoices() {
 
-            $.getJSON("http://voteappnet.azurewebsites.net/Api/vote", function (data) {
-               
-              
+            getc = $.getJSON("http://voteappnet.azurewebsites.net/Api/vote", function (data) {
+
+                $("#myTable").empty();
+                var table;
+                var row ;
+
                 for (var i = 0; i < data.length; i++) {
-                    $(".tcontent").append("<tr>")
-                    $(".tcontent").append("<td>" + data[i].Id + "</td>")
+                    //$("#myTable").append("<tr>")
+                    //$("#myTable").append("<td>" + data[i].Id + "</td>")
 
-                    $(".tcontent").append("<td>" + "<a href=" + "Vote.html?id=" + data[i].Id + ">" + data[i].Name + "</a>" + "</td>");
-                    
+                    //$("#myTable").append("<td>" + "<a href=" + "Vote.html?id=" + data[i].Id + ">" + data[i].Name + "</a>" + "</td>");
+
+                    row = "<tr>" + "<td>" + data[i].Id + "</td>" + "<td>" + data[i].Name +  "</td> </tr>";
+
                                      
-                    for (var j = 0; j < data[i].Choices.length; j++) {
-                        $(".tcontent").append("<td>" + data[i].Choices[j].Text + "</td>");
+                    //for (var j = 0; j < data[i].Choices[j]; j++) {
+                    //    var innerrow = "<td>" + data[i].Choices[j].Text + "</td>";
+                    //    row.concat(innerrow);
 
+                    //}
 
-                    }
-                    $(".tcontent").append("</tr>");
+                 //   row.concat("");
+                    $("#myTable").append(row);
+                    // $("#myTable").append("</tr>");
                 }
-                
+                $('#myTable').pageMe({ pagerSelector: '#myPager', showPrevNext: true, hidePageNumbers: false, perPage: 4 });
             });
         };
-
+        if (getc.success) {
+          
+           
+        }
         function Search() {
             var searchtext = $("#searchbox").val();
             $.getJSON("http://voteappnet.azurewebsites.net/Api/vote?text="+searchtext, function (data) {
 
-                $(".tcontent").empty();  
+                $("#myTable").empty();
 
                 for (var i = 0; i < data.length; i++) {
-                    $(".tcontent").append("<tr>")
-                    $(".tcontent").append("<td>" + data[i].Id + "</td>")
+                    $("#myTable").append("<tr>")
 
-                    $(".tcontent").append("<td>" + "<a href=" + "Vote.html?id=" + data[i].Id + ">" + data[i].Name + "</a>" + "</td>");
+                    $("#myTable").append("<td>" + data[i].Id + "</td>");
+
+                    $("#myTable").append("<td>" + "<a href=" + "Vote.html?id=" + data[i].Id + ">" + data[i].Name + "</a>" + "</td>");
 
 
                     for (var j = 0; j < data[i].Choices.length; j++) {
-                        $(".tcontent").append("<td>" + data[i].Choices[j].Text + "</td>");
+                        $("#myTable").append("<td>" + data[i].Choices[j].Text + "</td>");
 
 
                     }
-                    $(".tcontent").append("</tr>");
+                    $("#myTable").append("</tr>");
                 }
 
             });
         };
     </script>
+    
 </head>
 
 <body>
@@ -83,35 +98,66 @@
         </div>
         <div class="row">
             <div class="col-sm-offset-4 col-sm-4">
-                <form method="post">
-                                  
-                        <table class="table  table-condensed">
+                <div class="container">
+                    <div class="row">
+
+
+                        <table class="table ">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Vote</th>
-                                    <th>Choice 1</th>
-                                    <th>Choice 2</th>
+                                    <th>Vote title</th>
+                                    <th>Voters</th>
                                 </tr>
                             </thead>
-                            <tbody class="tcontent"></tbody>
+                            <tbody id="myTable">
+                                <tr>
+                                    <td>1</td>
+                                    <td>auch</td>
+                                    <td>rolf</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>auch</td>
+                                    <td>rolf</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>auch</td>
+                                    <td>rolf</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>auch</td>
+                                    <td>rolf</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>auch</td>
+                                    <td>rolf</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>auch</td>
+                                    <td>rolf</td>
+                                </tr>
+                            </tbody>
+
                         </table>
-                    <center>
-                        <ul class="pagination">
-                            <li><a href="#">&laquo;</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
-                    </center>
-                    
-                    <div class="form-actions"><!-- /Back -->
-                        <button type="button" class="btn btn-primary" value=" &lt;-- BACK " onclick="history.go(-1);return false;">Back</button>
+
+                        <center>
+                            <ul class="pagination" id="myPager"></ul>
+                        </center>
                     </div>
-                </form>
+
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination" id="myPager"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <!-- /Back -->
+                <button type="button" class="btn btn-primary" value=" &lt;-- BACK " onclick="history.go(-1);return false;">Back</button>
             </div>
         </div>
     </div>
@@ -119,4 +165,6 @@
     
 
 </body>
+
 </html>
+
