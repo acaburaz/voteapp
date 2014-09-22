@@ -24,11 +24,11 @@
                     $(".tcontent").append("<td>" + "<a href=" + "Vote.html?id=" + data[i].Id + ">" + data[i].Name + "</a>" + "</td>");
                     
                                      
-                    for (var j = 0; j < data[i].Choices.length; j++) {
-                        $(".tcontent").append("<td>" + data[i].Choices[j].Text + "</td>");
+                    //for (var j = 0; j < data[i].Choices.length; j++) {
+                    //    $(".tcontent").append("<td>" + data[i].Choices[j].Text + "</td>");
 
 
-                    }
+                    //}
                     $(".tcontent").append("</tr>");
                 }
                 
@@ -48,11 +48,11 @@
                     $(".tcontent").append("<td>" + "<a href=" + "Vote.html?id=" + data[i].Id + ">" + data[i].Name + "</a>" + "</td>");
 
 
-                    for (var j = 0; j < data[i].Choices.length; j++) {
-                        $(".tcontent").append("<td>" + data[i].Choices[j].Text + "</td>");
+                    //for (var j = 0; j < data[i].Choices.length; j++) {
+                    //    $(".tcontent").append("<td>" + data[i].Choices[j].Text + "</td>");
 
 
-                    }
+                    //}
                     $(".tcontent").append("</tr>");
                 }
 
@@ -90,8 +90,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Vote</th>
-                                    <th>Choice 1</th>
-                                    <th>Choice 2</th>
+                                    <!--<th>Choice 1</th>
+                                    <th>Choice 2</th>-->
                                 </tr>
                             </thead>
                             <tbody class="tcontent"></tbody>
