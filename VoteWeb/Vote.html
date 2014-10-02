@@ -61,7 +61,7 @@
                // if(data.)
 
                     for (var j = 0; j < data.Choices.length; j++) {
-                        $("#buttons").append("<a class=\"btn btn-lg btn-success\" style=\"width: 50%\" role=\"button\"  onclick=\"+putVote("+data.Choices[j].ChoiceId+");\">"  +data.Choices[j].Text+ "<span class=\"badge\">" + data.Choices[j].Voters.length + "</span>" + "</a>");
+                        $("#buttons").append("<div clas=\"col-md-10\"><a class=\"btn btn-lg btn-success\" style=\"width: 50%\" role=\"button\"  onclick=\"+putVote("+data.Choices[j].ChoiceId+");\">"  +data.Choices[j].Text+ "<span class=\"badge\">" + data.Choices[j].Voters.length + "</span>" + "</a></div>");
                     }
                     $(".tcontent").append("</tr>");
             });
