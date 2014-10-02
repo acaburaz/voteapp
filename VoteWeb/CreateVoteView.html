@@ -3,14 +3,13 @@
 <head>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <script type="text/javascript">
 
-        //GetChoices();
+       //GetChoices();
 
         function Submit() {
 
@@ -23,10 +22,10 @@
             };
 
             d = new Date();
-            //public int ChoiceId { get; set; }
-            //public String Text { get; set; }
-            //public virtual ICollection<Voter> Voters {get;set;}
-            //public DateTime Timestamp { get; set; }
+            public int ChoiceId { get; set; }
+            public String Text { get; set; }
+            public virtual ICollection<Voter> Voters {get;set;}
+            public DateTime Timestamp { get; set; }
             var choices = [];
 
             var all = $(".input-group").find(".form-control");
@@ -45,11 +44,11 @@
 
             };
 
-            //public int Id { get; set; }
-            //public string Name { get; set; }
-            //public int Votes { get; set; }
-            //public String VoteType { get; set; }
-            //public virtual ICollection <Choice> Choices { get; set; }
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public int Votes { get; set; }
+            public String VoteType { get; set; }
+            public virtual ICollection <Choice> Choices { get; set; }
 
             $.ajax({
                 url: 'http://voteappnet.azurewebsites.net/Api/vote',
@@ -92,7 +91,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading"><a href="index.html" style="color: #ffffff"><center>VoteApp v.1.0</center></div>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron"><a href="CreateVoteView.hmtl" style="color:#808080"></a>
         <center><p class="lead">Create a Voteroom</p></center>
         <div class="row">
             <div class="col-sm-offset-4 col-sm-4">
@@ -120,7 +119,7 @@
                     </div>
                     <div class="form-actions">
                         <button type="button" class="btn btn-success" onclick="Submit()">Create</button>
-                        <button type="button" class="btn btn-primary" value=" &lt;-- BACK " onclick="history.go(-1);return false;">Cancel</button>
+                        <button type="button" class="btn btn-danger" value=" &lt;-- BACK " onclick="history.go(-1);return false;">Cancel</button>
                     </div>
                 </form>
 
