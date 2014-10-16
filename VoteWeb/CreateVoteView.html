@@ -22,10 +22,6 @@
             };
 
             d = new Date();
-            public int ChoiceId { get; set; }
-            public String Text { get; set; }
-            public virtual ICollection<Voter> Voters {get;set;}
-            public DateTime Timestamp { get; set; }
             var choices = [];
 
             var all = $(".input-group").find(".form-control");
@@ -43,12 +39,6 @@
                 Choices: choices,
 
             };
-
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public int Votes { get; set; }
-            public String VoteType { get; set; }
-            public virtual ICollection <Choice> Choices { get; set; }
 
             $.ajax({
                 url: 'http://voteappnet.azurewebsites.net/Api/vote',
