@@ -57,7 +57,7 @@
             var addDiv = $('#addinput');
             var i = $('#addinput p').size() + 1;
 
-            $('#addNew').live('click', function () {
+            $('#addNew').click(function () {
                 $('<p class="input-group"><input type="text" class="form-control" id="choice' + i + '"' + ' name="choice_' + i + '" placeholder="Answer ' + i + '" >' +
                   '<span class="input-group-btn"><button" class="btn btn-danger " id="remNew"><span class="glyphicon glyphicon-minus"></span></button></span></p>').appendTo(addDiv);
                 i++;
@@ -65,7 +65,7 @@
                 return false;
             });
 
-            $('#remNew').live('click', function () {
+            $('#remNew').click(function () {
                 if (i > 2) {
                     $(this).parents('p').remove();
                     i--;
